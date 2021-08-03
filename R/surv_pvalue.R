@@ -211,7 +211,7 @@ surv_pvalue <- function(fit, data = NULL, method = "survdiff", test.for.trend = 
       sdiff <- survival::survdiff(eval(fit$call$formula), data = data,
                                   subset = eval(fit$call$subset))
     pvalue <- stats::pchisq(sdiff$chisq, length(sdiff$n) - 1, lower.tail = FALSE)
-    pval.txt <- scales::label_scientific()(pvalue)
+    pval.txt <- paste0("p=",scales::label_scientific()(pvalue))
     res <- list(pval = pvalue, method = "Log-rank", pval.txt = pval.txt)
   }
   # Other possibilities to compute pvalue using the survMisc package
